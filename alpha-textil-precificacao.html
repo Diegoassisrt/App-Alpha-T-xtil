@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alpha Têxtil | Gestão de Precificação</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { bg:'#0b0b0b', card:'#161616', line:'#262626', brand:'#ff6600' },
+  fontFamily: { display:['Sora','sans-serif'], sans:['Inter','sans-serif'] }
+}}}
+</script>
+<style>
+  body{background:#0b0b0b;color:#f2f2f2}
+  .field{width:100%;background:#0b0b0b;border:1px solid #262626;border-radius:.5rem;padding:.6rem .8rem;color:#f2f2f2;outline:none}
+  .field:focus{border-color:#ff6600;box-shadow:0 0 0 3px rgba(255,102,0,.2)}
+  select.field option{background:#161616}
+  .btn{background:#ff6600;color:#0b0b0b;font-weight:600;border-radius:.5rem;padding:.65rem 1.1rem;transition:filter .15s}
+  .btn:hover{filter:brightness(1.1)}
+  .btn:focus-visible,.ghost:focus-visible{outline:2px solid #ff6600;outline-offset:2px}
+  .ghost{border:1px solid #262626;border-radius:.5rem;padding:.55rem 1rem;color:#d4d4d4;transition:border-color .15s,color .15s}
+  .ghost:hover{border-color:#ff6600;color:#ff6600}
+  .alpha{font-family:'Sora',serif;color:#ff6600;font-weight:700;line-height:1}
+  .hidden-view{display:none!important}
+  th{font-weight:600;color:#a3a3a3;text-align:left;padding:.75rem 1rem;white-space:nowrap}
+  td{padding:.75rem 1rem;border-top:1px solid #262626;white-space:nowrap}
+  @media (prefers-reduced-motion:no-preference){#login-box{animation:rise .5s ease-out}@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body class="font-sans min-h-screen">
+
+<!-- LOGIN -->
+<section id="login-view" class="min-h-screen flex items-center justify-center p-4">
+  <div id="login-box" class="w-full max-w-sm bg-card border border-line rounded-2xl p-8">
+    <div class="flex flex-col items-center mb-8">
+      <div class="alpha text-7xl mb-3">α</div>
+      <h1 class="font-display font-bold text-xl tracking-wide">ALPHA TÊXTIL</h1>
+      <p class="text-neutral-400 text-sm mt-1">Entre para gerenciar seus preços</p>
+    </div>
+    <div class="space-y-4">
+      <div>
+        <label for="user" class="block text-sm text-neutral-400 mb-1">Usuário</label>
+        <input id="user" class="field" autocomplete="username" autofocus>
+      </div>
+      <div>
+        <label for="pass" class="block text-sm text-neutral-400 mb-1">Senha</label>
+        <input id="pass" type="password" class="field" autocomplete="current-password">
+      </div>
+      <p id="login-error" class="text-red-400 text-sm hidden">Usuário ou senha incorretos. Confira e tente de novo.</p>
+      <button id="btn-login" class="btn w-full">Entrar</button>
+    </div>
+  </div>
+</section>
+
+<!-- APP -->
+<div id="app-view" class="hidden-view">
+  <header class="border-b border-line bg-card/60 sticky top-0 z-10 backdrop-blur">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="alpha text-4xl">α</span>
+        <span class="font-display font-bold tracking-wide">ALPHA TÊXTIL</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-sm text-neutral-400 hidden sm:inline">Olá, <b id="who" class="text-white capitalize"></b></span>
+        <button id="btn-logout" class="ghost text-sm">Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-8 space-y-8">
+    <!-- Cards -->
+    <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-card border border-line rounded-xl p-4">
+        <p class="text-sm text-neutral-400">Produtos cadastrados</p>
+        <p id="c-total" class="font-display text-3xl font-bold mt-1">0</p>
+      </div>
+      <div class="bg-card border border-line rounded-xl p-4">
+        <p class="text-sm text-neutral-400">Faturamento médio estimado</p>
+        <p id="c-fat" class="font-display text-3xl font-bold mt-1 text-brand">R$ 0,00</p>
+        <p class="text-xs text-neutral-500 mt-1">preço médio × vendas/mês</p>
+      </div>
+      <div class="bg-card border border-line rounded-xl p-4">
+        <p class="text-sm text-neutral-400">Custo fixo mensal (MEI)</p>
+        <p class="font-display text-3xl font-bold mt-1">R$ 80,00</p>
+        <p class="text-xs text-neutral-500 mt-1">rateio: <span id="c-rateio">R$ 0,00</span> por peça</p>
+      </div>
+      <div class="bg-card border border-line rounded-xl p-4">
+        <p class="text-sm text-neutral-400">Taxas da Shopee</p>
+        <p class="font-display text-xl font-bold mt-1"><span id="c-com">14</span>% + <span id="c-fixa">R$ 4,00</span></p>
+        <p class="text-xs text-neutral-500 mt-1">comissão + taxa fixa por item</p>
+      </div>
+    </section>
+
+    <!-- Parâmetros -->
+    <section class="bg-card border border-line rounded-xl p-4 grid sm:grid-cols-3 gap-4">
+      <div>
+        <label class="block text-sm text-neutral-400 mb-1" for="p-com">Comissão Shopee (%)</label>
+        <input id="p-com" type="number" step="0.1" min="0" class="field">
+      </div>
+      <div>
+        <label class="block text-sm text-neutral-400 mb-1" for="p-fixa">Taxa fixa por item (R$)</label>
+        <input id="p-fixa" type="number" step="0.01" min="0" class="field">
+      </div>
+      <div>
+        <label class="block text-sm text-neutral-400 mb-1" for="p-vendas">Vendas estimadas por mês (peças)</label>
+        <input id="p-vendas" type="number" step="1" min="1" class="field">
+      </div>
+    </section>
+
+    <!-- Formulário -->
+    <section class="bg-card border border-line rounded-xl p-5">
+      <h2 id="form-title" class="font-display font-semibold text-lg mb-4">Cadastrar produto</h2>
+      <form id="form" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" autocomplete="off">
+        <div>
+          <label class="block text-sm text-neutral-400 mb-1" for="f-cod">Código</label>
+          <input id="f-cod" class="field" placeholder="ALT-01" required>
+        </div>
+        <div>
+          <label class="block text-sm text-neutral-400 mb-1" for="f-nome">Nome do produto</label>
+          <input id="f-nome" class="field" placeholder="Camiseta básica algodão" required>
+        </div>
+        <div>
+          <label class="block text-sm text-neutral-400 mb-1" for="f-cat">Categoria</label>
+          <select id="f-cat" class="field">
+            <option>Camisetas</option><option>Inverno</option><option>Acessórios</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm text-neutral-400 mb-1" for="f-prod">Custo de produção / matéria-prima (R$)</label>
+          <input id="f-prod" type="number" step="0.01" min="0" class="field" required>
+        </div>
+        <div>
+          <label class="block text-sm text-neutral-400 mb-1" for="f-emb">Custo de embalagem (R$)</label>
+          <input id="f-emb" type="number" step="0.01" min="0" value="2.50" class="field" required>
+        </div>
+        <div>
+          <label class="block text-sm text-neutral-400 mb-1" for="f-marg">Margem de lucro desejada (%)</label>
+          <input id="f-marg" type="number" step="0.1" min="0" value="30" class="field" required>
+        </div>
+        <div class="sm:col-span-2 lg:col-span-3 flex flex-wrap items-center gap-3">
+          <button class="btn" type="submit" id="btn-save">Salvar produto</button>
+          <button class="ghost hidden" type="button" id="btn-cancel">Cancelar edição</button>
+          <p id="form-msg" class="text-sm text-red-400"></p>
+        </div>
+      </form>
+      <p class="text-xs text-neutral-500 mt-3">Usar um código que já existe atualiza o produto.</p>
+    </section>
+
+    <!-- Tabela -->
+    <section class="bg-card border border-line rounded-xl overflow-hidden">
+      <div class="flex items-center justify-between p-4">
+        <h2 class="font-display font-semibold text-lg">Produtos e preços ideais</h2>
+        <button id="btn-clear" class="ghost text-sm">Limpar tabela</button>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="bg-bg">
+            <tr><th>Cód</th><th>Nome</th><th>Categoria</th><th>Custo total</th><th>Preço de venda</th><th>Lucro líquido</th><th>Margem real</th><th></th></tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+      <p id="empty" class="p-8 text-center text-neutral-500 hidden">Nenhum produto ainda. Preencha o formulário acima para calcular o primeiro preço.</p>
+    </section>
+  </main>
+</div>
+
+<script>
+const USERS = { marcelo:'alpha2026', diego:'alpha2026' };
+const FIXO_MEI = 80;
+const K = { prods:'alpha_produtos', cfg:'alpha_config', sess:'alpha_sessao' };
+const $ = id => document.getElementById(id);
+const brl = n => n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+
+const load = (k, def) => { try { return JSON.parse(localStorage.getItem(k)) ?? def; } catch { return def; } };
+const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
+
+let produtos = load(K.prods, []);
+let cfg = Object.assign({ com:14, fixa:4, vendas:40 }, load(K.cfg, {}));
+
+/* ---------- Cálculo ----------
+   Custo total = produção + embalagem + (custo fixo ÷ vendas/mês)
+   Preço = (custo total + taxa fixa) ÷ (1 − comissão − margem)
+   Lucro = preço − comissão − taxa fixa − custo total                */
+function calcular(p) {
+  const rateio = FIXO_MEI / Math.max(1, cfg.vendas);
+  const custo = p.producao + p.embalagem + rateio;
+  const divisor = 1 - cfg.com/100 - p.margem/100;
+  if (divisor <= 0) return { custo, preco:NaN, lucro:NaN, real:NaN };
+  const preco = (custo + cfg.fixa) / divisor;
+  const lucro = preco - preco*cfg.com/100 - cfg.fixa - custo;
+  return { custo, preco, lucro, real: lucro/preco*100 };
+}
+
+/* ---------- Render ---------- */
+function render() {
+  const rateio = FIXO_MEI / Math.max(1, cfg.vendas);
+  const calc = produtos.map(p => ({ p, r: calcular(p) }));
+  const validos = calc.filter(x => isFinite(x.r.preco));
+  const media = validos.length ? validos.reduce((s,x)=>s+x.r.preco,0)/validos.length : 0;
+
+  $('c-total').textContent = produtos.length;
+  $('c-fat').textContent = brl(media * cfg.vendas);
+  $('c-rateio').textContent = brl(rateio);
+  $('c-com').textContent = String(cfg.com).replace('.',',');
+  $('c-fixa').textContent = brl(cfg.fixa);
+  $('empty').classList.toggle('hidden', produtos.length > 0);
+
+  $('tbody').innerHTML = calc.map(({p,r}) => {
+    const ok = isFinite(r.preco);
+    const cor = r.lucro < 0 ? 'text-red-400' : 'text-emerald-400';
+    return `<tr>
+      <td class="font-semibold text-brand">${esc(p.cod)}</td>
+      <td>${esc(p.nome)}</td>
+      <td>${esc(p.cat)}</td>
+      <td>${brl(r.custo)}</td>
+      <td class="font-semibold">${ok ? brl(r.preco) : '<span class="text-red-400">Margem alta demais</span>'}</td>
+      <td class="${cor}">${ok ? brl(r.lucro) : '—'}</td>
+      <td>${ok ? r.real.toFixed(1).replace('.',',')+'%' : '—'}</td>
+      <td class="text-right">
+        <button class="ghost text-xs mr-1" data-edit="${esc(p.cod)}">Editar</button>
+        <button class="ghost text-xs" data-del="${esc(p.cod)}" aria-label="Excluir ${esc(p.cod)}">Excluir</button>
+      </td></tr>`;
+  }).join('');
+}
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* ---------- Formulário ---------- */
+function resetForm() {
+  $('form').reset();
+  $('f-emb').value = '2.50'; $('f-marg').value = '30';
+  $('f-cod').readOnly = false;
+  $('form-title').textContent = 'Cadastrar produto';
+  $('btn-save').textContent = 'Salvar produto';
+  $('btn-cancel').classList.add('hidden');
+  $('form-msg').textContent = '';
+}
+$('form').addEventListener('submit', e => {
+  e.preventDefault();
+  const p = {
+    cod: $('f-cod').value.trim().toUpperCase(),
+    nome: $('f-nome').value.trim(),
+    cat: $('f-cat').value,
+    producao: parseFloat($('f-prod').value),
+    embalagem: parseFloat($('f-emb').value),
+    margem: parseFloat($('f-marg').value)
+  };
+  if (!p.cod || !p.nome || [p.producao,p.embalagem,p.margem].some(isNaN)) {
+    $('form-msg').textContent = 'Preencha todos os campos com valores válidos.'; return;
+  }
+  if (1 - cfg.com/100 - p.margem/100 <= 0) {
+    $('form-msg').textContent = 'A comissão somada à margem passa de 100%. Reduza a margem desejada.'; return;
+  }
+  const i = produtos.findIndex(x => x.cod === p.cod);
+  if (i >= 0) produtos[i] = p; else produtos.push(p);
+  save(K.prods, produtos); render(); resetForm();
+});
+$('btn-cancel').onclick = resetForm;
+
+$('tbody').addEventListener('click', e => {
+  const ed = e.target.dataset.edit, del = e.target.dataset.del;
+  if (ed) {
+    const p = produtos.find(x => x.cod === ed); if (!p) return;
+    $('f-cod').value = p.cod; $('f-cod').readOnly = true;
+    $('f-nome').value = p.nome; $('f-cat').value = p.cat;
+    $('f-prod').value = p.producao; $('f-emb').value = p.embalagem; $('f-marg').value = p.margem;
+    $('form-title').textContent = 'Atualizar produto ' + p.cod;
+    $('btn-save').textContent = 'Atualizar produto';
+    $('btn-cancel').classList.remove('hidden');
+    $('form').scrollIntoView({ behavior:'smooth', block:'center' });
+  }
+  if (del && confirm('Excluir o produto ' + del + '?')) {
+    produtos = produtos.filter(x => x.cod !== del);
+    save(K.prods, produtos); render();
+  }
+});
+$('btn-clear').onclick = () => {
+  if (produtos.length && confirm('Apagar todos os produtos da tabela? Essa ação não pode ser desfeita.')) {
+    produtos = []; save(K.prods, produtos); render(); resetForm();
+  }
+};
+
+/* ---------- Parâmetros ---------- */
+function syncParams() {
+  $('p-com').value = cfg.com; $('p-fixa').value = cfg.fixa; $('p-vendas').value = cfg.vendas;
+}
+['p-com','p-fixa','p-vendas'].forEach(id => $(id).addEventListener('input', () => {
+  const c = parseFloat($('p-com').value), f = parseFloat($('p-fixa').value), v = parseInt($('p-vendas').value);
+  if (isNaN(c) || isNaN(f) || isNaN(v) || c < 0 || c >= 100 || f < 0 || v < 1) return;
+  cfg = { com:c, fixa:f, vendas:v }; save(K.cfg, cfg); render();
+}));
+
+/* ---------- Login ---------- */
+function entrar(user) {
+  $('login-view').classList.add('hidden-view');
+  $('app-view').classList.remove('hidden-view');
+  $('who').textContent = user;
+  syncParams(); render();
+}
+function tentarLogin() {
+  const u = $('user').value.trim().toLowerCase(), p = $('pass').value;
+  if (USERS[u] && USERS[u] === p) {
+    try { sessionStorage.setItem(K.sess, u); } catch {}
+    $('login-error').classList.add('hidden');
+    entrar(u);
+  } else {
+    $('login-error').classList.remove('hidden');
+    $('pass').value = ''; $('pass').focus();
+  }
+}
+$('btn-login').onclick = tentarLogin;
+['user','pass'].forEach(id => $(id).addEventListener('keydown', e => { if (e.key === 'Enter') tentarLogin(); }));
+$('btn-logout').onclick = () => {
+  try { sessionStorage.removeItem(K.sess); } catch {}
+  $('app-view').classList.add('hidden-view');
+  $('login-view').classList.remove('hidden-view');
+  $('user').value = ''; $('pass').value = ''; $('user').focus();
+};
+
+// Mantém a sessão ao recarregar a página (encerra ao fechar a aba)
+try { const s = sessionStorage.getItem(K.sess); if (s && USERS[s]) entrar(s); } catch {}
+</script>
+</body>
+</html>
