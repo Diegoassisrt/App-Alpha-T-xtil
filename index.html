@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alpha Têxtil | Gestão de Precificação</title>
+<meta name="theme-color" content="#0b0b0b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Alpha Têxtil">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,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">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { bg:'#0b0b0b', card:'#161616', line:'#262626', brand:'#ff6600' },
+  fontFamily: { display:['Sora','sans-serif'], sans:['Inter','sans-serif'] }
+}}}
+</script>
+<style>
+  body{background:#0b0b0b;color:#f2f2f2}
+  .field{width:100%;background:#0b0b0b;border:1px solid #262626;border-radius:.5rem;padding:.6rem .8rem;color:#f2f2f2;outline:none}
+  .field:focus{border-color:#ff6600;box-shadow:0 0 0 3px rgba(255,102,0,.2)}
+  select.field option{background:#161616}
+  .btn{background:#ff6600;color:#0b0b0b;font-weight:600;border-radius:.5rem;padding:.65rem 1.1rem;transition:filter .15s}
+  .btn:hover{filter:brightness(1.1)}
+  .btn:focus-visible,.ghost:focus-visible,.tab:focus-visible{outline:2px solid #ff6600;outline-offset:2px}
+  .ghost{border:1px solid #262626;border-radius:.5rem;padding:.55rem 1rem;color:#d4d4d4;transition:border-color .15s,color .15s}
+  .ghost:hover{border-color:#ff6600;color:#ff6600}
+  .tab{padding:.7rem 1.2rem;border-bottom:2px solid transparent;color:#a3a3a3;font-weight:600}
+  .tab[aria-selected="true"]{color:#ff6600;border-color:#ff6600}
+  .alpha{font-family:'Sora',serif;color:#ff6600;font-weight:700;line-height:1}
+  .hidden-view{display:none!important}
+  th{font-weight:600;color:#a3a3a3;text-align:left;padding:.75rem 1rem;white-space:nowrap}
+  td{padding:.75rem 1rem;border-top:1px solid #262626;white-space:nowrap}
+  @media (prefers-reduced-motion:no-preference){#login-box{animation:rise .5s ease-out}@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body class="font-sans min-h-screen">
+
+<!-- LOGIN -->
+<section id="login-view" class="min-h-screen flex items-center justify-center p-4">
+  <div id="login-box" class="w-full max-w-sm bg-card border border-line rounded-2xl p-8">
+    <div class="flex flex-col items-center mb-8">
+      <div class="alpha text-7xl mb-3">α</div>
+      <h1 class="font-display font-bold text-xl tracking-wide">ALPHA TÊXTIL</h1>
+      <p class="text-neutral-400 text-sm mt-1">Entre para gerenciar seus preços</p>
+    </div>
+    <div class="space-y-4">
+      <div>
+        <label for="user" class="block text-sm text-neutral-400 mb-1">Usuário</label>
+        <input id="user" class="field" autocomplete="username" autofocus>
+      </div>
+      <div>
+        <label for="pass" class="block text-sm text-neutral-400 mb-1">Senha</label>
+        <input id="pass" type="password" class="field" autocomplete="current-password">
+      </div>
+      <label class="flex items-center gap-2 text-sm text-neutral-300 cursor-pointer">
+        <input id="remember" type="checkbox" class="w-4 h-4 accent-[#ff6600]"> Permanecer logado
+      </label>
+      <p id="login-error" class="text-red-400 text-sm hidden">Usuário ou senha incorretos. Confira e tente de novo.</p>
+      <button id="btn-login" class="btn w-full">Entrar</button>
+    </div>
+  </div>
+</section>
+
+<!-- APP -->
+<div id="app-view" class="hidden-view">
+  <header class="border-b border-line bg-card/60 sticky top-0 z-10 backdrop-blur">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="alpha text-4xl">α</span>
+        <span class="font-display font-bold tracking-wide">ALPHA TÊXTIL</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-sm text-neutral-400 hidden sm:inline">Olá, <b id="who" class="text-white capitalize"></b></span>
+        <button id="btn-logout" class="ghost text-sm">Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-8 space-y-6">
+    <!-- Cards -->
+    <section class="grid grid-cols-2 lg:grid-cols-5 gap-4">
+      <div class="bg-card border border-line rounded-xl p-4">
+        <p class="text-sm text-neutral-400">Produtos cadastrados</p>
+        <p id="c-total" class="font-display text-3xl font-bold mt-1">0</p>
+      </div>
+      <div class="bg-card border border-line rounded-xl p-4">
+        <p class="text-sm text-neutral-400">Faturamento total de vendas</p>
+        <p id="c-fat" class="font-display text-2xl font-bold mt-1 text-brand">R$ 0,00</p>
+        <p id="c-fat-sub" class="text-xs text-neutral-500 mt-1">0 peças vendidas</p>
+      </div>
+      <div class="bg-card border border-line rounded-xl p-4">
+        <p class="text-sm text-neutral-400">Custos fixos (total)</p>
+        <p id="c-fixos" class="font-display text-2xl font-bold mt-1">R$ 0,00</p>
+        <p class="text-xs text-neutral-500 mt-1">rateio: <span id="c-rateio">R$ 0,00</span> por produto</p>
+      </div>
+      <div class="bg-card border border-line rounded-xl p-4">
+        <p class="text-sm text-neutral-400">Custos variáveis</p>
+        <p id="c-vars" class="font-display text-2xl font-bold mt-1">R$ 0,00</p>
+        <p class="text-xs text-neutral-500 mt-1">somados ao custo de cada produto</p>
+      </div>
+      <div class="bg-card border border-line rounded-xl p-4 col-span-2 lg:col-span-1">
+        <p class="text-sm text-neutral-400">Taxas da Shopee</p>
+        <p class="font-display text-xl font-bold mt-1">14% a 20%</p>
+        <p class="text-xs text-neutral-500 mt-1">+ taxa fixa de R$ 4,50 a R$ 26,00 conforme a faixa de preço</p>
+      </div>
+    </section>
+
+    <!-- Abas -->
+    <div role="tablist" class="flex border-b border-line overflow-x-auto">
+      <button role="tab" class="tab" id="tab-prod" aria-selected="true">Produtos</button>
+      <button role="tab" class="tab" id="tab-custos" aria-selected="false">Gestão de custos</button>
+      <button role="tab" class="tab" id="tab-vendas" aria-selected="false">Vendas</button>
+      <button role="tab" class="tab" id="tab-taxas" aria-selected="false">Taxas da Shopee</button>
+    </div>
+
+    <!-- SEÇÃO PRODUTOS -->
+    <div id="sec-prod" role="tabpanel" class="space-y-6">
+      <section class="bg-card border border-line rounded-xl p-5">
+        <h2 id="form-title" class="font-display font-semibold text-lg mb-4">Cadastrar produto</h2>
+        <form id="form" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" autocomplete="off">
+          <div>
+            <label class="block text-sm text-neutral-400 mb-1" for="f-cod">Código</label>
+            <input id="f-cod" class="field" placeholder="ALT-01" required>
+          </div>
+          <div>
+            <label class="block text-sm text-neutral-400 mb-1" for="f-nome">Nome do produto</label>
+            <input id="f-nome" class="field" placeholder="Camiseta básica algodão" required>
+          </div>
+          <div>
+            <label class="block text-sm text-neutral-400 mb-1" for="f-cat">Categoria</label>
+            <input id="f-cat" class="field" list="cats" placeholder="Digite ou escolha uma categoria" required>
+            <datalist id="cats"></datalist>
+          </div>
+          <div>
+            <label class="block text-sm text-neutral-400 mb-1" for="f-prod">Custo de produção / matéria-prima (R$)</label>
+            <input id="f-prod" type="number" step="0.01" min="0" class="field" required>
+          </div>
+          <div>
+            <label class="block text-sm text-neutral-400 mb-1" for="f-emb">Custo de embalagem (fixo)</label>
+            <input id="f-emb" class="field opacity-70 cursor-not-allowed" value="R$ 2,50" readonly tabindex="-1" aria-describedby="emb-note">
+            <p id="emb-note" class="text-xs text-neutral-500 mt-1">Valor fixo por peça, já somado ao custo total.</p>
+          </div>
+          <div>
+            <label class="block text-sm text-neutral-400 mb-1" for="f-marg">Margem de lucro desejada (%)</label>
+            <input id="f-marg" type="number" step="0.1" min="0" value="30" class="field" required>
+          </div>
+          <div class="sm:col-span-2 lg:col-span-3 border-t border-line pt-4">
+            <p class="text-sm font-semibold text-neutral-300">Características físicas <span class="font-normal text-neutral-500">(opcional)</span></p>
+          </div>
+          <div>
+            <label class="block text-sm text-neutral-400 mb-1" for="f-tam">Tamanho</label>
+            <input id="f-tam" class="field" placeholder="P, M, G, Único...">
+          </div>
+          <div>
+            <label class="block text-sm text-neutral-400 mb-1" for="f-comp">Comprimento (cm)</label>
+            <input id="f-comp" type="number" step="0.1" min="0" class="field">
+          </div>
+          <div>
+            <label class="block text-sm text-neutral-400 mb-1" for="f-larg">Largura (cm)</label>
+            <input id="f-larg" type="number" step="0.1" min="0" class="field">
+          </div>
+          <div>
+            <label class="block text-sm text-neutral-400 mb-1" for="f-peso">Peso</label>
+            <div class="flex gap-2">
+              <input id="f-peso" type="number" step="0.01" min="0" class="field">
+              <select id="f-peso-un" class="field" style="width:5rem" aria-label="Unidade do peso"><option value="g">g</option><option value="kg">kg</option></select>
+            </div>
+          </div>
+          <div class="sm:col-span-2 lg:col-span-3 flex flex-wrap items-center gap-3">
+            <button class="btn" type="submit" id="btn-save">Salvar produto</button>
+            <button class="ghost hidden" type="button" id="btn-cancel">Cancelar edição</button>
+            <p id="form-msg" class="text-sm text-red-400"></p>
+          </div>
+        </form>
+        <p class="text-xs text-neutral-500 mt-3">Usar um código que já existe atualiza o produto. Os custos da aba "Gestão de custos" entram no cálculo automaticamente, e o rateio fixo muda conforme o número de produtos.</p>
+      </section>
+
+      <section class="bg-card border border-line rounded-xl overflow-hidden">
+        <div class="flex items-center justify-between p-4">
+          <h2 class="font-display font-semibold text-lg">Produtos e preços ideais</h2>
+          <button id="btn-clear" class="ghost text-sm">Limpar tabela</button>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-bg">
+              <tr><th>Cód</th><th>Nome</th><th>Categoria</th><th>Características</th><th>Custo total</th><th>Taxa Shopee</th><th>Preço de venda</th><th>Lucro líquido</th><th>Margem real</th><th></th></tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+        <p id="empty" class="p-8 text-center text-neutral-500 hidden">Nenhum produto ainda. Preencha o formulário acima para calcular o primeiro preço.</p>
+      </section>
+    </div>
+
+    <!-- SEÇÃO CUSTOS -->
+    <div id="sec-custos" role="tabpanel" class="space-y-6 hidden-view">
+      <section class="bg-card border border-line rounded-xl p-5">
+        <h2 id="k-title" class="font-display font-semibold text-lg mb-1">Cadastrar custo</h2>
+        <p class="text-sm text-neutral-400 mb-4">A soma dos custos fixos é dividida pelo número de produtos cadastrados. Os custos variáveis são somados direto ao custo de cada produto. Ao cadastrar, editar ou excluir um custo, todos os preços são recalculados.</p>
+        <form id="form-custo" class="grid sm:grid-cols-4 gap-4 items-end" autocomplete="off">
+          <div class="sm:col-span-2">
+            <label class="block text-sm text-neutral-400 mb-1" for="k-nome">Nome do custo</label>
+            <input id="k-nome" class="field" placeholder="Internet, Aluguel, Etiqueta..." required>
+          </div>
+          <div>
+            <label class="block text-sm text-neutral-400 mb-1" for="k-valor">Valor (R$)</label>
+            <input id="k-valor" type="number" step="0.01" min="0" class="field" required>
+          </div>
+          <div>
+            <label class="block text-sm text-neutral-400 mb-1" for="k-tipo">Tipo</label>
+            <select id="k-tipo" class="field">
+              <option value="fixo">Fixo</option>
+              <option value="variavel">Variável</option>
+            </select>
+          </div>
+          <div class="sm:col-span-4 flex items-center gap-3">
+            <button class="btn" type="submit" id="k-save">Adicionar custo</button>
+            <button class="ghost hidden" type="button" id="k-cancel">Cancelar edição</button>
+            <p id="k-msg" class="text-sm text-red-400"></p>
+          </div>
+        </form>
+      </section>
+
+      <section class="bg-card border border-line rounded-xl overflow-hidden">
+        <h2 class="font-display font-semibold text-lg p-4">Custos cadastrados</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-bg"><tr><th>Nome</th><th>Tipo</th><th>Valor</th><th></th></tr></thead>
+            <tbody id="tbody-custos"></tbody>
+            <tfoot id="tfoot-custos"></tfoot>
+          </table>
+        </div>
+        <p id="empty-custos" class="p-8 text-center text-neutral-500 hidden">Nenhum custo cadastrado. Adicione o primeiro acima, como o MEI ou a internet.</p>
+      </section>
+    </div>
+    <!-- SEÇÃO VENDAS -->
+    <div id="sec-vendas" role="tabpanel" class="space-y-6 hidden-view">
+      <section class="bg-card border border-line rounded-xl p-5">
+        <div class="flex flex-wrap items-start justify-between gap-3 mb-4">
+          <div class="max-w-2xl">
+            <h2 class="font-display font-semibold text-lg mb-1">Vendas realizadas</h2>
+            <p class="text-sm text-neutral-400">Informe quantas peças de cada produto você já vendeu. O faturamento total é a soma de quantidade vendida × preço de venda de cada produto. O preço acompanha os custos e as taxas atuais.</p>
+          </div>
+          <button id="btn-zerar-vendas" class="ghost text-sm">Zerar vendas</button>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-4">
+          <div class="bg-bg border border-line rounded-lg p-3">
+            <p class="text-xs text-neutral-400">Faturamento total de vendas</p>
+            <p id="v-fat" class="font-display text-xl font-bold text-brand">R$ 0,00</p>
+          </div>
+          <div class="bg-bg border border-line rounded-lg p-3">
+            <p class="text-xs text-neutral-400">Lucro líquido total</p>
+            <p id="v-luc" class="font-display text-xl font-bold">R$ 0,00</p>
+          </div>
+          <div class="bg-bg border border-line rounded-lg p-3">
+            <p class="text-xs text-neutral-400">Peças vendidas</p>
+            <p id="v-pecas" class="font-display text-xl font-bold">0</p>
+          </div>
+        </div>
+      </section>
+      <section class="bg-card border border-line rounded-xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-bg"><tr><th>Cód</th><th>Nome</th><th>Preço de venda</th><th>Vendas realizadas</th><th>Faturamento</th><th>Lucro líquido</th></tr></thead>
+            <tbody id="tbody-vendas"></tbody>
+          </table>
+        </div>
+        <p id="empty-vendas" class="p-8 text-center text-neutral-500 hidden">Cadastre produtos para registrar as vendas.</p>
+      </section>
+    </div>
+
+    <!-- SEÇÃO TAXAS -->
+    <div id="sec-taxas" role="tabpanel" class="hidden-view">
+      <section class="bg-card border border-line rounded-xl overflow-hidden">
+        <div class="p-4">
+          <h2 class="font-display font-semibold text-lg">Tabela de taxas da Shopee</h2>
+          <p class="text-sm text-neutral-400 mt-1">O sistema testa cada faixa e escolhe o menor preço de venda que garante sua margem já descontando a comissão e a taxa fixa daquela faixa.</p>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-bg"><tr><th>Faixa de preço</th><th>Comissão</th><th>Taxa fixa</th></tr></thead>
+            <tbody id="tbody-taxas"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<script>
+const USERS = { marcelo:'alpha2026', diego:'alpha2026' };
+const K = { prods:'alpha_produtos', cfg:'alpha_config', custos:'alpha_custos', vendas:'alpha_vendas_reais', sess:'alpha_sessao' };
+const EMBALAGEM = 2.5; // custo fixo de embalagem por peça
+const $ = id => document.getElementById(id);
+const brl = n => n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+const load = (k, def) => { try { const v = JSON.parse(localStorage.getItem(k)); return v ?? def; } catch { return def; } };
+const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
+
+let produtos = load(K.prods, []);
+// Vendas reais registradas por produto
+let vendas = Object.assign({ porProduto: {} }, load(K.vendas, {})); // quantidade real vendida por código
+// Primeira abertura: começa com o MEI de R$ 80,00 já cadastrado (pode ser excluído)
+let custos = load(K.custos, null);
+if (!Array.isArray(custos)) {
+  custos = [{ id: Date.now(), nome:'MEI', valor:80, tipo:'fixo' }];
+  save(K.custos, custos);
+}
+
+/* ---------- Totais de custos ---------- */
+const totalFixos = () => custos.filter(c => c.tipo === 'fixo').reduce((s,c) => s + c.valor, 0);
+const totalVars  = () => custos.filter(c => c.tipo === 'variavel').reduce((s,c) => s + c.valor, 0);
+const rateioPeca = () => produtos.length ? totalFixos() / produtos.length : 0; // 0 produtos = rateio 0
+
+/* ---------- Tabela oficial de taxas da Shopee ---------- */
+const FAIXAS = [
+  { min:0,   max:79.99,    com:20, fixa:4.5,  label:'Até R$ 79,99' },
+  { min:80,  max:99.99,    com:14, fixa:16,   label:'De R$ 80,00 até R$ 99,99' },
+  { min:100, max:199.99,   com:14, fixa:20,   label:'De R$ 100,00 até R$ 199,99' },
+  { min:200, max:499.99,   com:14, fixa:26,   label:'De R$ 200,00 até R$ 499,99' },
+  { min:500, max:Infinity, com:14, fixa:26,   label:'Acima de R$ 500,00' }
+];
+
+/* ---------- Cálculo ----------
+   Custo total = produção + embalagem + custos variáveis + (custos fixos ÷ nº de produtos)
+   Para cada faixa (da menor para a maior): preço = (custo total + taxa fixa) ÷ (1 − comissão − margem).
+   Vale o primeiro preço que cai dentro da própria faixa. Se ficar abaixo do piso da faixa,
+   o preço sobe até o piso (a margem real fica maior que a desejada).                       */
+function calcular(p) {
+  const custo = p.producao + EMBALAGEM + totalVars() + rateioPeca();
+  for (const f of FAIXAS) {
+    const div = 1 - f.com/100 - p.margem/100;
+    if (div <= 0) continue;
+    let preco = Math.ceil(((custo + f.fixa) / div) * 100 - 1e-9) / 100;
+    if (preco > f.max + 1e-9) continue;
+    if (preco < f.min) preco = f.min;
+    const comissao = preco * f.com / 100;
+    const lucro = preco - comissao - f.fixa - custo;
+    return { custo, preco, lucro, real: lucro / preco * 100, faixa: f, taxa: comissao + f.fixa };
+  }
+  return { custo, preco:NaN, lucro:NaN, real:NaN, faixa:null, taxa:NaN };
+}
+
+/* ---------- Características físicas ---------- */
+const num = v => { const n = parseFloat(v); return (isNaN(n) || n < 0) ? null : n; };
+const fmt = n => n.toLocaleString('pt-BR', { maximumFractionDigits: 2 });
+const fmtPeso = g => g >= 1000 ? fmt(g / 1000) + ' kg' : fmt(g) + ' g';
+function carac(p) {
+  const l = [];
+  if (p.tamanho) l.push('Tamanho ' + esc(p.tamanho));
+  if (p.comp != null && p.larg != null) l.push(fmt(p.comp) + ' × ' + fmt(p.larg) + ' cm');
+  else if (p.comp != null) l.push('Comprimento ' + fmt(p.comp) + ' cm');
+  else if (p.larg != null) l.push('Largura ' + fmt(p.larg) + ' cm');
+  if (p.pesoG != null) l.push('Peso ' + fmtPeso(p.pesoG));
+  return l.length ? l.map(x => `<span class="block">${x}</span>`).join('') : '<span class="text-neutral-600">—</span>';
+}
+
+/* ---------- Vendas ---------- */
+const qtdDe = cod => vendas.porProduto[cod] ?? 0;
+function resumoVendas(calc) {
+  let fat = 0, luc = 0, pecas = 0;
+  const linhas = calc.map(({p, r}) => {
+    const q = qtdDe(p.cod), ok = isFinite(r.preco);
+    const f = ok ? q * r.preco : 0, l = ok ? q * r.lucro : 0;
+    fat += f; luc += l; pecas += q;
+    return { p, r, q, f, l, ok };
+  });
+  return { linhas, fat, luc, pecas };
+}
+function renderVendas(res) {
+  $('empty-vendas').classList.toggle('hidden', produtos.length > 0);
+  $('tbody-vendas').innerHTML = res.linhas.map(l => `<tr>
+    <td class="font-semibold text-brand">${esc(l.p.cod)}</td>
+    <td>${esc(l.p.nome)}</td>
+    <td>${l.ok ? brl(l.r.preco) : '—'}</td>
+    <td><input type="number" min="0" step="1" class="field" style="width:7rem;padding:.4rem .6rem" data-qtd="${esc(l.p.cod)}" value="${vendas.porProduto[l.p.cod] ?? ''}" placeholder="0" aria-label="Vendas realizadas de ${esc(l.p.cod)}"></td>
+    <td class="cell-fat font-semibold"></td><td class="cell-luc"></td></tr>`).join('');
+  pintarVendas(res);
+}
+// Atualiza só os números (sem recriar a tabela, para não perder o foco ao digitar)
+function pintarVendas(res) {
+  $('c-fat').textContent = brl(res.fat);
+  $('c-fat-sub').textContent = res.pecas + (res.pecas === 1 ? ' peça vendida' : ' peças vendidas');
+  $('v-fat').textContent = brl(res.fat);
+  $('v-pecas').textContent = res.pecas;
+  $('v-luc').textContent = brl(res.luc);
+  $('v-luc').className = 'font-display text-xl font-bold ' + (res.luc < 0 ? 'text-red-400' : 'text-emerald-400');
+  [...$('tbody-vendas').rows].forEach((tr, i) => {
+    const l = res.linhas[i]; if (!l) return;
+    tr.querySelector('.cell-fat').textContent = l.ok ? brl(l.f) : '—';
+    const c = tr.querySelector('.cell-luc');
+    c.textContent = l.ok ? brl(l.l) : '—';
+    c.className = 'cell-luc ' + (l.l < 0 ? 'text-red-400' : 'text-emerald-400');
+  });
+}
+
+/* ---------- Render ---------- */
+function render() {
+  const calc = produtos.map(p => ({ p, r: calcular(p) }));
+
+  $('c-total').textContent = produtos.length;
+  renderVendas(resumoVendas(calc));
+  $('c-fixos').textContent = brl(totalFixos());
+  $('c-rateio').textContent = brl(rateioPeca());
+  $('c-vars').textContent = brl(totalVars());
+  $('empty').classList.toggle('hidden', produtos.length > 0);
+
+  $('cats').innerHTML = [...new Set(produtos.map(p => p.cat))].map(c => `<option value="${esc(c)}">`).join('');
+
+  $('tbody').innerHTML = calc.map(({p,r}) => {
+    const ok = isFinite(r.preco);
+    const cor = r.lucro < 0 ? 'text-red-400' : 'text-emerald-400';
+    return `<tr>
+      <td class="font-semibold text-brand">${esc(p.cod)}</td>
+      <td>${esc(p.nome)}</td>
+      <td>${esc(p.cat)}</td>
+      <td class="text-xs leading-5 text-neutral-300">${carac(p)}</td>
+      <td>${brl(r.custo)}</td>
+      <td>${ok ? brl(r.taxa) + `<span class="block text-xs text-neutral-500">${r.faixa.com}% + ${brl(r.faixa.fixa)}</span>` : '—'}</td>
+      <td class="font-semibold">${ok ? brl(r.preco) : '<span class="text-red-400">Margem alta demais</span>'}</td>
+      <td class="${cor}">${ok ? brl(r.lucro) : '—'}</td>
+      <td>${ok ? r.real.toFixed(1).replace('.',',') + '%' : '—'}</td>
+      <td class="text-right">
+        <button class="ghost text-xs mr-1" data-edit="${esc(p.cod)}">Editar</button>
+        <button class="ghost text-xs" data-del="${esc(p.cod)}" aria-label="Excluir ${esc(p.cod)}">Excluir</button>
+      </td></tr>`;
+  }).join('');
+
+  renderCustos();
+}
+
+$('tbody-taxas').innerHTML = FAIXAS.map(f => `<tr><td>${f.label}</td><td>${f.com}%</td><td>${brl(f.fixa)}</td></tr>`).join('');
+
+function renderCustos() {
+  $('empty-custos').classList.toggle('hidden', custos.length > 0);
+  $('tbody-custos').innerHTML = custos.map(c => `<tr>
+    <td>${esc(c.nome)}</td>
+    <td><span class="${c.tipo === 'fixo' ? 'text-brand' : 'text-sky-400'}">${c.tipo === 'fixo' ? 'Fixo' : 'Variável'}</span></td>
+    <td>${brl(c.valor)}</td>
+    <td class="text-right"><button class="ghost text-xs mr-1" data-editcusto="${c.id}">Editar</button><button class="ghost text-xs" data-delcusto="${c.id}" aria-label="Excluir custo ${esc(c.nome)}">Excluir</button></td>
+  </tr>`).join('');
+  $('tfoot-custos').innerHTML = custos.length ? `
+    <tr class="bg-bg"><td class="font-semibold" colspan="2">Total de custos fixos</td><td class="font-semibold">${brl(totalFixos())}</td><td></td></tr>
+    <tr class="bg-bg"><td class="font-semibold" colspan="2">Total de custos variáveis</td><td class="font-semibold">${brl(totalVars())}</td><td></td></tr>
+    <tr class="bg-bg"><td class="font-semibold text-brand" colspan="2">Rateio fixo por produto (${produtos.length} produto${produtos.length===1?'':'s'})</td><td class="font-semibold text-brand">${brl(rateioPeca())}</td><td></td></tr>` : '';
+}
+
+/* ---------- Custos ---------- */
+let editandoCusto = null;
+function resetCusto() {
+  editandoCusto = null; $('form-custo').reset(); $('k-msg').textContent = '';
+  $('k-title').textContent = 'Cadastrar custo'; $('k-save').textContent = 'Adicionar custo';
+  $('k-cancel').classList.add('hidden');
+}
+$('form-custo').addEventListener('submit', e => {
+  e.preventDefault();
+  const nome = $('k-nome').value.trim(), valor = parseFloat($('k-valor').value), tipo = $('k-tipo').value;
+  if (!nome || isNaN(valor) || valor < 0) { $('k-msg').textContent = 'Informe um nome e um valor válido.'; return; }
+  const c = editandoCusto && custos.find(x => x.id === editandoCusto);
+  if (c) { c.nome = nome; c.valor = valor; c.tipo = tipo; }
+  else custos.push({ id: Date.now(), nome, valor, tipo });
+  save(K.custos, custos); render(); resetCusto(); $('k-nome').focus();
+});
+$('k-cancel').onclick = resetCusto;
+$('tbody-custos').addEventListener('click', e => {
+  const del = e.target.dataset.delcusto, ed = e.target.dataset.editcusto;
+  if (ed) {
+    const c = custos.find(x => String(x.id) === ed); if (!c) return;
+    editandoCusto = c.id;
+    $('k-nome').value = c.nome; $('k-valor').value = c.valor; $('k-tipo').value = c.tipo;
+    $('k-title').textContent = 'Editar custo'; $('k-save').textContent = 'Salvar alteração';
+    $('k-cancel').classList.remove('hidden');
+    $('form-custo').scrollIntoView({ behavior:'smooth', block:'center' });
+  }
+  if (del) {
+    const c = custos.find(x => String(x.id) === del);
+    if (c && confirm('Excluir o custo "' + c.nome + '"? Os preços serão recalculados.')) {
+      custos = custos.filter(x => String(x.id) !== del);
+      if (editandoCusto === c.id) resetCusto();
+      save(K.custos, custos); render();
+    }
+  }
+});
+
+/* ---------- Produtos ---------- */
+function resetForm() {
+  $('form').reset();
+  $('f-emb').value = brl(EMBALAGEM); $('f-marg').value = '30';
+  $('f-cod').readOnly = false;
+  $('form-title').textContent = 'Cadastrar produto';
+  $('btn-save').textContent = 'Salvar produto';
+  $('btn-cancel').classList.add('hidden');
+  $('form-msg').textContent = '';
+}
+$('form').addEventListener('submit', e => {
+  e.preventDefault();
+  const p = {
+    cod: $('f-cod').value.trim().toUpperCase(),
+    nome: $('f-nome').value.trim(),
+    cat: $('f-cat').value.trim(),
+    producao: parseFloat($('f-prod').value),
+    embalagem: EMBALAGEM,
+    margem: parseFloat($('f-marg').value),
+    tamanho: $('f-tam').value.trim(),
+    comp: num($('f-comp').value),
+    larg: num($('f-larg').value),
+    pesoG: (() => { const v = num($('f-peso').value); return v == null ? null : Math.round(($('f-peso-un').value === 'kg' ? v * 1000 : v) * 100) / 100; })()
+  };
+  if (!p.cod || !p.nome || !p.cat || [p.producao,p.embalagem,p.margem].some(isNaN)) {
+    $('form-msg').textContent = 'Preencha todos os campos com valores válidos.'; return;
+  }
+  if (p.margem >= 80) {
+    $('form-msg').textContent = 'Com a comissão de 20% da Shopee, a margem desejada precisa ser menor que 80%.'; return;
+  }
+  const i = produtos.findIndex(x => x.cod === p.cod);
+  if (i >= 0) produtos[i] = p; else produtos.push(p);
+  save(K.prods, produtos); render(); resetForm();
+});
+$('btn-cancel').onclick = resetForm;
+
+$('tbody').addEventListener('click', e => {
+  const ed = e.target.dataset.edit, del = e.target.dataset.del;
+  if (ed) {
+    const p = produtos.find(x => x.cod === ed); if (!p) return;
+    $('f-cod').value = p.cod; $('f-cod').readOnly = true;
+    $('f-nome').value = p.nome; $('f-cat').value = p.cat;
+    $('f-prod').value = p.producao; $('f-marg').value = p.margem;
+    $('f-tam').value = p.tamanho || ''; $('f-comp').value = p.comp ?? ''; $('f-larg').value = p.larg ?? '';
+    if (p.pesoG != null && p.pesoG >= 1000) { $('f-peso-un').value = 'kg'; $('f-peso').value = p.pesoG / 1000; }
+    else { $('f-peso-un').value = 'g'; $('f-peso').value = p.pesoG ?? ''; }
+    $('form-title').textContent = 'Atualizar produto ' + p.cod;
+    $('btn-save').textContent = 'Atualizar produto';
+    $('btn-cancel').classList.remove('hidden');
+    $('form').scrollIntoView({ behavior:'smooth', block:'center' });
+  }
+  if (del && confirm('Excluir o produto ' + del + '?')) {
+    produtos = produtos.filter(x => x.cod !== del);
+    delete vendas.porProduto[del]; save(K.vendas, vendas);
+    save(K.prods, produtos); render();
+  }
+});
+$('btn-clear').onclick = () => {
+  if (produtos.length && confirm('Apagar todos os produtos da tabela? Essa ação não pode ser desfeita.')) {
+    produtos = []; vendas.porProduto = {}; save(K.prods, produtos); save(K.vendas, vendas); render(); resetForm();
+  }
+};
+
+/* ---------- Abas ---------- */
+const ABAS = ['prod','custos','vendas','taxas'];
+function abrirAba(qual) {
+  ABAS.forEach(a => {
+    $('sec-' + a).classList.toggle('hidden-view', a !== qual);
+    $('tab-' + a).setAttribute('aria-selected', a === qual);
+  });
+}
+ABAS.forEach(a => $('tab-' + a).onclick = () => abrirAba(a));
+
+/* ---------- Vendas: eventos ---------- */
+$('tbody-vendas').addEventListener('input', e => {
+  const cod = e.target.dataset.qtd; if (cod === undefined) return;
+  const v = parseInt(e.target.value);
+  if (isNaN(v) || v < 0) delete vendas.porProduto[cod]; else vendas.porProduto[cod] = v;
+  save(K.vendas, vendas);
+  pintarVendas(resumoVendas(produtos.map(p => ({ p, r: calcular(p) }))));
+});
+$('btn-zerar-vendas').onclick = () => {
+  if (Object.keys(vendas.porProduto).length && confirm('Zerar as vendas registradas de todos os produtos?')) {
+    vendas.porProduto = {}; save(K.vendas, vendas); render();
+  }
+};
+
+/* ---------- Login ---------- */
+function limparSessao() {
+  try { localStorage.removeItem(K.sess); } catch {}
+  try { sessionStorage.removeItem(K.sess); } catch {}
+}
+function entrar(user) {
+  $('login-view').classList.add('hidden-view');
+  $('app-view').classList.remove('hidden-view');
+  $('who').textContent = user;
+  render();
+}
+function tentarLogin() {
+  const u = $('user').value.trim().toLowerCase(), p = $('pass').value;
+  if (USERS[u] && USERS[u] === p) {
+    limparSessao();
+    try { ($('remember').checked ? localStorage : sessionStorage).setItem(K.sess, u); } catch {}
+    $('login-error').classList.add('hidden');
+    entrar(u);
+  } else {
+    $('login-error').classList.remove('hidden');
+    $('pass').value = ''; $('pass').focus();
+  }
+}
+$('btn-login').onclick = tentarLogin;
+['user','pass'].forEach(id => $(id).addEventListener('keydown', e => { if (e.key === 'Enter') tentarLogin(); }));
+$('btn-logout').onclick = () => {
+  limparSessao();
+  $('app-view').classList.add('hidden-view');
+  $('login-view').classList.remove('hidden-view');
+  $('user').value = ''; $('pass').value = ''; $('remember').checked = false; $('user').focus();
+};
+
+// Retoma a sessão salva (localStorage = "permanecer logado"; sessionStorage = só nesta aba)
+try {
+  const s = localStorage.getItem(K.sess) || sessionStorage.getItem(K.sess);
+  if (s && USERS[s]) entrar(s);
+} catch {}
+</script>
+</body>
+</html>
